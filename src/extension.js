@@ -112,6 +112,28 @@ _createMenu() {
 	if(!boolean) {
         SystemMenu.addMenuItem(this._logout);
 	DefaultActions.bind_property('can-logout', this._logout, 'visible', bindFlags); }
+
+	// Ethernet
+	
+        this._ethernet = new PopupMenu.PopupImageMenuItem(_('Ethernet'), 'system-log-out-symbolic');
+        this._ethernet.connect('activate', () => { DefaultActions.activateLogout(); });
+
+        boolean = this._settings.get_boolean('remove-eth-button');
+
+        //if(!boolean) {
+        //SystemMenu.addMenuItem(this._logout);
+        //DefaultActions.bind_property('can-logout', this._logout, 'visible', bindFlags); }
+
+	// Wireless 
+	
+        this._wireless = new PopupMenu.PopupImageMenuItem(_('Wireless'), 'system-log-out-symbolic');
+        this._wireless.connect('activate', () => { DefaultActions.activateLogout(); });
+
+        boolean = this._settings.get_boolean('remove-wifi-button');
+
+        //if(!boolean) {
+        //SystemMenu.addMenuItem(this._logout);
+        //DefaultActions.bind_property('can-logout', this._logout, 'visible', bindFlags); }
 	
 	// Switch User
 
@@ -167,6 +189,7 @@ _connectSettings() {
         this.removeRestartButtonChanged = this._settings.connect('changed::remove-restart-button', this._takeAction.bind(this));
         this.removePoweroffButtonChanged = this._settings.connect('changed::remove-power-button', this._takeAction.bind(this));
         this.removeLogoutButtonChanged = this._settings.connect('changed::remove-logout-button', this._takeAction.bind(this));
+        this.removeEthButtonChanged = this._settings.connect('changed::remove-eth-button', this._takeAction.bind(this));
         this.buttonsOrderChanged = this._settings.connect('changed::buttons-order', this._takeAction.bind(this));
 	}
 
@@ -190,6 +213,11 @@ _onDestroy() {
 	if(this.removeLogoutButtonChanged) {
         this._settings.disconnect(this.removeLogoutButtonChanged);
         this.removeLogoutButtonChanged = 0;
+        }
+
+	if(this.removeEthButtonChanged) {
+        this._settings.disconnect(this.removeEthButtonChanged);
+        this.removeEthButtonChanged = 0;
         }
         
         if(this.buttonsOrderChanged) {

@@ -45,6 +45,8 @@ class PrefsWidget {
         	vbox[add](this.removeRestartButton());
         	vbox[add](this.removePoweroffButton());
         	vbox[add](this.removeLogoutButton());
+        	vbox[add](this.removeEthButton());
+        	vbox[add](this.removeWifiButton());
         	
         	this.notebook.append_page(grid, new Gtk.Label({ label: 'Basic Settings', visible: true, hexpand: true }));
         
@@ -188,4 +190,41 @@ removeLogoutButton() {
       	
       	return hbox;
     }
+removeEthButton() {
+	let hbox = new Gtk.Box({ orientation: Gtk.Orientation.HORIZONTAL, margin_top: 5 });
+	let removeEthButtonLabel = new Gtk.Label({ label: "Remove Ethernet Item", xalign: 0, hexpand: true });
+
+	this.rLBLToggleSwitch = new Gtk.Switch({ active: this._settings.get_boolean('remove-eth-button') });
+	this.rLBLToggleSwitch.connect('notify::active', (button) => { this._settings.set_boolean('remove-eth-button', button.active); });
+
+        if(GTK_VERSION == 3) {
+                hbox.add(removeEthButtonLabel);
+                hbox.add(this.rLBLToggleSwitch) }
+
+        else if(GTK_VERSION == 4) {
+                hbox.append(removeEthButtonLabel);
+                hbox.append(this.rLBLToggleSwitch) }
+
+        return hbox;
+
+    }
+removeWifiButton() {
+             let hbox = new Gtk.Box({ orientation: Gtk.Orientation.HORIZONTAL, margin_top: 5 });
+             let removeWifiButtonLabel = new Gtk.Label({ label: "Remove Wireless Item", xalign: 0, hexpand: true });
+
+             this.rLBLToggleSwitch = new Gtk.Switch({ active: this._settings.get_boolean('remove-wifi-button') });
+             this.rLBLToggleSwitch.connect('notify::active', (button) => { this._settings.set_boolean('remove-wifi-button', button.active); });
+
+             if(GTK_VERSION == 3) {
+                     hbox.add(removeWifiButtonLabel);
+                     hbox.add(this.rLBLToggleSwitch) }
+
+             else if(GTK_VERSION == 4) {
+                     hbox.append(removeWifiButtonLabel);
+                     hbox.append(this.rLBLToggleSwitch) }
+
+             return hbox;
+
+         }
+
 }

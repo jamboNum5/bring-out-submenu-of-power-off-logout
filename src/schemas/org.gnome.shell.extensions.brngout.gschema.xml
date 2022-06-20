@@ -15,7 +15,7 @@
 </key>
   
 <key name="remove-suspend-button" type="b">
-<default>false</default>
+<default>true</default>
 <summary>Turn ON if you wish to remove Suspend Item from system's menu.</summary>
 <description>Suspend Item</description>
 </key>
@@ -27,7 +27,7 @@
 </key>
     
 <key name="remove-power-button" type="b">
-<default>false</default>
+<default>true</default>
 <summary>Turn ON if you wish to remove Power Off Item from system's menu.</summary>
 <description>Power Off Item</description>
 </key>
@@ -43,6 +43,18 @@
 <summary>Turn ON if you wish to remove the logout Item from system's menu.</summary>
 <description>Logout Item</description>
 </key>
-    
+
+<key name="remove-eth-button" type="b">
+<default>false</default>
+<summary>Turn ON if you wish to remove the Ethernet item from the system's menu.</summary>
+<description>Ethernet Item</description>
+</key>
+
+<key name="remove-wifi-button" type="b">
+<default>false</default>
+<summary>Turn ON if you wish to remove the Wireless item from the system's menu.</summary>
+<description>Wireless Item</description>
+</key>
+
 </schema>
 </schemalist>
