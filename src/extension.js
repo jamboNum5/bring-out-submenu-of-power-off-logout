@@ -30,6 +30,11 @@ const ExtensionUtils = imports.misc.extensionUtils;
 const System = Main.panel.statusArea.aggregateMenu._system;
 const SystemMenu = System.menu;
 
+const Convenience = Me.imports.convenience;
+const NetworkIndicator = Me.imports.indicators.network.NetworkIndicator;
+
+log(NetworkIndicator);
+
 const GnomeSession = imports.misc.gnomeSession;
 let SessionManager = null;
 
