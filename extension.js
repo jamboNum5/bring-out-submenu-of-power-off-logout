@@ -18,6 +18,9 @@
 
 /* exported init */
 
+
+log('Starting Bringout Submenus');
+
 'use strict';
 
 const { GObject, Shell, St } = imports.gi;
@@ -30,10 +33,8 @@ const ExtensionUtils = imports.misc.extensionUtils;
 const System = Main.panel.statusArea.aggregateMenu._system;
 const SystemMenu = System.menu;
 
-const Convenience = Me.imports.convenience;
-const NetworkIndicator = Me.imports.indicators.network.NetworkIndicator;
 
-log(NetworkIndicator);
+log(System.menu);
 
 const GnomeSession = imports.misc.gnomeSession;
 let SessionManager = null;
@@ -62,7 +63,7 @@ _init() {
 		DefaultActions._sessionUpdated();
 		DefaultActions.forceUpdate();
 	});
-    	}
+}
 
 _createMenu() {
 	let bindFlags = GObject.BindingFlags.DEFAULT | GObject.BindingFlags.SYNC_CREATE;
@@ -176,8 +177,6 @@ _getAvailableButtons() {
 				this._logout,
 				this._restart,
 				this._power,
-				this._wireless,
-				this._ethernet,
 				this._separator1,
 				this._separator2
 			    	]
@@ -196,8 +195,6 @@ _connectSettings() {
         this.removeRestartButtonChanged = this._settings.connect('changed::remove-restart-button', this._takeAction.bind(this));
         this.removePoweroffButtonChanged = this._settings.connect('changed::remove-power-button', this._takeAction.bind(this));
         this.removeLogoutButtonChanged = this._settings.connect('changed::remove-logout-button', this._takeAction.bind(this));
-        this.removeEthButtonChanged = this._settings.connect('changed::remove-eth-button', this._takeAction.bind(this));
-        this.removeWifiButtonChanged = this._settings.connect('changed::remove-eth-button', this._takeAction.bind(this));
         this.buttonsOrderChanged = this._settings.connect('changed::buttons-order', this._takeAction.bind(this));
 	}
 
@@ -241,8 +238,6 @@ _removeActors() {
 	SystemMenu.box.remove_actor(this._restart);
 	SystemMenu.box.remove_actor(this._power);
 	SystemMenu.box.remove_actor(this._logout);
-	SystemMenu.box.remove_actor(this._ethernet);
-	SystemMenu.box.remove_actor(this._wireless);
 	SystemMenu.box.remove_actor(this._switchUser);
 	}
 

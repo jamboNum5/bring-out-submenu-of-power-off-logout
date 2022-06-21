@@ -195,6 +195,7 @@ removeEthButton() {
 	let removeEthButtonLabel = new Gtk.Label({ label: "Remove Ethernet Item", xalign: 0, hexpand: true });
 
 	this.rLBLToggleSwitch = new Gtk.Switch({ active: this._settings.get_boolean('remove-eth-button') });
+	print('test');
 	this.rLBLToggleSwitch.connect('notify::active', (button) => { this._settings.set_boolean('remove-eth-button', button.active); });
 
         if(GTK_VERSION == 3) {
